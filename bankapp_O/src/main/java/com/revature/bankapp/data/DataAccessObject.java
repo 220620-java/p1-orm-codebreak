@@ -1,6 +1,7 @@
 package com.revature.bankapp.data;
 
-import com.revature.bankapp.ds.List;
+import java.sql.SQLException;
+import java.util.List;
 
 public interface DataAccessObject<T> {
 
@@ -12,8 +13,9 @@ public interface DataAccessObject<T> {
 	 * 
 	 * @param t the object to be added to the data source
 	 * @return the object that was added or null if the object was unable to be added
+	 * @throws SQLException 
 	 */
-	public T create(T t);
+	public T create(T t) throws SQLException;
 	
 	/**
 	 * Retrieves the object from the data source that matches 

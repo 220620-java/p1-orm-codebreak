@@ -1,6 +1,8 @@
 package com.revature.bankapp.data;
 
-import com.revature.bankapp.ds.List;
+
+import java.util.List;
+
 import com.revature.bankapp.models.Account;
 import com.revature.bankapp.models.User;
 

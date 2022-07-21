@@ -2,20 +2,23 @@ package com.revature.bankapp.models;
 
 import java.util.Objects;
 
-public class Account {
+import com.revature.orm.annotations.PrimaryKey;
+import com.revature.orm.annotations.Relationship;
+import com.revature.orm.enums.RelationshipType;
 
+public class Account {
+	@PrimaryKey
 	private int account_id;
+	@Relationship(type=RelationshipType.MANY_TO_ONE, ownerJoinColumn="user_id")
 	private int user_id;
 	private String accountType;
 	private double accountBal;
-	private double previousTransaction;
 	
 	public Account() {
 		this.account_id = 0;
 		this.user_id = 0;
 		this.accountType = "";
 		this.accountBal = 0;
-		this.previousTransaction = 0;
 	}
 	
 	public Account(int user_id) {
@@ -31,7 +34,6 @@ public class Account {
 		this.account_id = account_id;
 		this.accountType = accountType;
 		this.accountBal = accountBal;
-		this.previousTransaction = previousTransaction;	
 	}
 	
 	public Account(int account_id, String accountType, double accountBal, int user_id) {
@@ -99,13 +101,9 @@ public class Account {
 		this.accountBal = accountBal;
 	}
 
-	public void setPreviousTransaction(double previousTransaction) {
-		this.previousTransaction = previousTransaction;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountBal, accountType, account_id, previousTransaction, user_id);
+		return Objects.hash(accountBal, accountType, account_id, user_id);
 	}
 
 	@Override
@@ -119,14 +117,13 @@ public class Account {
 		Account other = (Account) obj;
 		return Double.doubleToLongBits(accountBal) == Double.doubleToLongBits(other.accountBal)
 				&& Objects.equals(accountType, other.accountType) && account_id == other.account_id
-				&& Double.doubleToLongBits(previousTransaction) == Double.doubleToLongBits(other.previousTransaction)
 				&& user_id == other.user_id;
 	}
 
 	@Override
 	public String toString() {
 		return "Account [id=" + account_id + ", user_id=" + user_id + ", accountType=" + accountType + ", accountBal="
-				+ accountBal + ", previousTransaction=" + previousTransaction + "]";
+				+ accountBal + ", previousTransaction=" + "]";
 	}
 	
 }

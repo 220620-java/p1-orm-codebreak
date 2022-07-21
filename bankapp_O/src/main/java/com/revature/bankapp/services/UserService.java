@@ -1,5 +1,7 @@
 package com.revature.bankapp.services;
 
+import java.sql.SQLException;
+
 import com.revature.bankapp.data.UserDAO;
 import com.revature.bankapp.data.UserPostgres;
 import com.revature.bankapp.exceptions.UsernameAlreadyExistsException;
@@ -10,9 +12,16 @@ public class UserService {
 	private UserDAO userDao = new UserPostgres();
 	
 	public User registerUser(User user) throws UsernameAlreadyExistsException {
-		user = userDao.create(user);
 		
-		if(user == null) {
+//		user = userDao.create(user);
+//		
+//		if(user == null) {
+//			throw new UsernameAlreadyExistsException();
+//		}
+//		return user;
+		try { 
+			user = userDao.create(user);
+		} catch (SQLException e) {
 			throw new UsernameAlreadyExistsException();
 		}
 		return user;

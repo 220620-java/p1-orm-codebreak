@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.Currency;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import com.revature.bankapp.ds.List;
+
+
 import com.revature.bankapp.exceptions.UsernameAlreadyExistsException;
 import com.revature.bankapp.models.Account;
 import com.revature.bankapp.models.User;

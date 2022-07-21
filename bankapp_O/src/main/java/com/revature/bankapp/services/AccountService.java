@@ -1,12 +1,13 @@
 package com.revature.bankapp.services;
 
+import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.Currency;
+import java.util.List;
 import java.util.Locale;
 
 import com.revature.bankapp.data.AccountDAO;
 import com.revature.bankapp.data.AccountPostgres;
-import com.revature.bankapp.ds.List;
 import com.revature.bankapp.models.Account;
 import com.revature.bankapp.models.User;
 
@@ -18,9 +19,15 @@ public class AccountService {
 	private static NumberFormat dollar = NumberFormat.getCurrencyInstance(us);
 	
 	public Account createAccount(Account account) {
-		account = accountDao.create(account);
-		
-		if(account == null) {
+//		account = accountDao.create(account);
+//		
+//		if(account == null) {
+//			System.out.println("Must be a glitch, try again");
+//		}
+//		return account;
+		try {
+			account = accountDao.create(account);
+		} catch (SQLException e) {
 			System.out.println("Must be a glitch, try again");
 		}
 		return account;

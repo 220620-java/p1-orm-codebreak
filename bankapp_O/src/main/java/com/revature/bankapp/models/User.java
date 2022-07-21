@@ -4,14 +4,20 @@ import java.util.Objects;
 
 import com.revature.bankapp.ds.ArrayList;
 import com.revature.bankapp.ds.List;
+import com.revature.orm.annotations.PrimaryKey;
+import com.revature.orm.annotations.Relationship;
+import com.revature.orm.annotations.Table;
+import com.revature.orm.enums.RelationshipType;
 
+@Table(name="user")
 public class User {
-
+	@PrimaryKey
 	private int id;
 	private String firstname;
 	private String lastname;
 	private String username;
 	private String password;
+	@Relationship(type=RelationshipType.ONE_TO_MANY, ownedJoinColumn="user_id")
 	private List<Account> accounts;
 	
 	public User() {
